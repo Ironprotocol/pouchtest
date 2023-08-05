@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "988761367327",
+    "project_id": "pouchtest-694d1",
+    "storage_bucket": "pouchtest-694d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988761367327:android:2376ad8307615657fb462a",
+        "android_client_info": {
+          "package_name": "com.example.pouch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988761367327-qts8qcaj5nvhd9b3hm50gr7arodend9n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT3UZzb8_dbFkF4IXRP1PUFMqLCDzo1V4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988761367327-qts8qcaj5nvhd9b3hm50gr7arodend9n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
