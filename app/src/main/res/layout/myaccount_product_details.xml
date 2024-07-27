@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MyaccountActivity"
+    android:background="@drawable/recyclerview_background"
+    android:padding="15dp">
+
+    <ImageView
+        android:id="@+id/productImage_myaccount"
+        android:layout_width="117dp"
+        android:layout_height="117dp"
+        android:background="@color/white"
+        tools:srcCompat="@tools:sample/avatars"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/company_myaccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="test"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/productImage_myaccount"
+        app:layout_constraintTop_toTopOf="@id/productImage_myaccount"/>
+
+    <TextView
+        android:id="@+id/productName_myaccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="test"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/productImage_myaccount"
+        app:layout_constraintTop_toBottomOf="@id/company_myaccount"/>
+
+    <TextView
+        android:id="@+id/category_myaccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="test"
+        app:layout_constraintStart_toEndOf="@id/productImage_myaccount"
+        app:layout_constraintTop_toBottomOf="@id/productName_myaccount"/>
+
+    <TextView
+        android:id="@+id/ingredients_myaccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="test"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/productImage_myaccount"
+        app:layout_constraintTop_toBottomOf="@id/category_myaccount"/>
+
+    <ImageView
+        android:id="@+id/btn_like_myaccount"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/after_likebtn_selected"
+        android:contentDescription="Like"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@id/productImage_myaccount"
+        app:layout_constraintTop_toBottomOf="@id/ingredients_myaccount" />
+
+    <TextView
+        android:id="@+id/like_amount_myaccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="default"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/btn_like_myaccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/btn_like_myaccount"
+        app:layout_constraintTop_toBottomOf="@id/ingredients_myaccount"
+        app:layout_constraintVertical_bias="0.437" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,82 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="218dp"
         android:layout_height="51dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/pouch_logo" />
+        app:srcCompat="@drawable/pouch_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
         android:text="SIGN UP"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/insert_email"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:background="@android:drawable/edit_text"
+        android:ems="10"
+        android:hint="Insert E-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="70dp" />
+
+    <EditText
+        android:id="@+id/insert_password"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:background="@android:drawable/edit_text"
+        android:ems="10"
+        android:hint="Insert Password"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@id/insert_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp" />
+
+    <EditText
+        android:id="@+id/insert_password_confirm"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:background="@android:drawable/edit_text"
+        android:ems="10"
+        android:hint="Insert Password Again"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@id/insert_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp" />
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:orientation="vertical">
+        android:text="Sign Up"
+        app:layout_constraintTop_toBottomOf="@id/insert_password_confirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp" />
 
-        <EditText
-            android:id="@+id/insert_email"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Insert E-mail"
-            android:background="@android:drawable/edit_text"
-            android:inputType="textEmailAddress" />
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/dc_text_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <EditText
-            android:id="@+id/insert_password"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Insert Password"
-            android:background="@android:drawable/edit_text"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/insert_password_confirm"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Insert Password Again"
-            android:background="@android:drawable/edit_text"
-            android:inputType="textPassword" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btn_signup"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Sign Up"/>
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -234,11 +234,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Log.d("ProductAdapter", "updateProducts called with " + newProducts.size() + " products.");
 
     }
+
+    public void addProducts(List<Product> newProducts) {
+        this.productList.addAll(newProducts);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return productList.size();
     }
-
-
+    public void clearProducts() {
+        this.productList.clear();
+        notifyDataSetChanged();
+    }
 
 }

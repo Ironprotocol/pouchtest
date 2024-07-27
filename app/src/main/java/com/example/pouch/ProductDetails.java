@@ -20,12 +20,16 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Collections;
+import java.util.Map;
+
 public class ProductDetails extends AppCompatActivity {
     private static final String TAG = "ProductDetails";
     private Product product;
 
     @Override
     public void onBackPressed() {
+        Log.d("MyActivity", "onBackPressed is called");
         super.onBackPressed();
         finish();
     }
@@ -52,19 +56,28 @@ public class ProductDetails extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-                                product = document.toObject(Product.class);  // Assign the Product instance to the field
-                                product.setProductId(document.getId());  // set the ProductId field
+                                product = document.toObject(Product.class);
+                                product.setProductId(document.getId());
                                 company.setText(product.getCompany());
                                 productName.setText(product.getProductName());
                                 category.setText(product.getCategory());
-                                ingredients.setText(product.getReplacement());
+
+                                Map<String, Long> ingredientsMap = product.getIngredients();
+                                if (ingredientsMap != null && !ingredientsMap.isEmpty()) {
+                                    String maxIngredient = Collections.max(ingredientsMap.entrySet(), Map.Entry.comparingByValue()).getKey();
+                                    String replacement = getReplacementForIngredient(maxIngredient);
+                                    ingredients.setText(replacement);
+                                    checkIngredientsAndUpdateIcons(ingredientsMap);
+                                } else {
+                                    ingredients.setText("N/A");
+                                }
+
                                 like_amount.setText(String.valueOf(product.getLike()));
 
                                 Glide.with(ProductDetails.this)
                                         .load(product.getImage())
                                         .into(productImage);
 
-                                // Check if the user has liked this product
                                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                 String userLikeId = userId + "_" + product.getProductId();
                                 db.collection("UserLikes").document(userLikeId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -97,7 +110,6 @@ public class ProductDetails extends AppCompatActivity {
                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 String userLikeId = userId + "_" + product.getProductId();
                 if (btn_like.getTag().equals("Like")) {
-                    // If the user has not liked this product yet, add it to the UserLikes collection
                     db.collection("UserLikes").document(userLikeId)
                             .set(new UserLike(userId, product.getProductId()))
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -107,13 +119,11 @@ public class ProductDetails extends AppCompatActivity {
                                     btn_like.setTag("Default");
                                     int newLikeAmount = Integer.parseInt(like_amount.getText().toString()) + 1;
                                     like_amount.setText(String.valueOf(newLikeAmount));
-                                    // Update the like count in the Product collection
                                     db.collection("Product").document(product.getProductId())
                                             .update("Like", newLikeAmount);
                                 }
                             });
                 } else {
-                    // If the user has already liked this product, remove it from the UserLikes collection
                     db.collection("UserLikes").document(userLikeId)
                             .delete()
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -123,7 +133,6 @@ public class ProductDetails extends AppCompatActivity {
                                     btn_like.setTag("Like");
                                     int newLikeAmount = Integer.parseInt(like_amount.getText().toString()) - 1;
                                     like_amount.setText(String.valueOf(newLikeAmount));
-                                    // Update the like count in the Product collection
                                     db.collection("Product").document(product.getProductId())
                                             .update("Like", newLikeAmount);
                                 }
@@ -131,5 +140,48 @@ public class ProductDetails extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private String getReplacementForIngredient(String ingredient) {
+        switch (ingredient) {
+            case "A":
+                return "aaa";
+            case "B":
+                return "bbb";
+            case "C":
+                return "ccc";
+            case "D":
+                return "ddd";
+            default:
+                return "";
+        }
+    }
+
+    private void checkIngredientsAndUpdateIcons(Map<String, Long> ingredientsMap) {
+        for (String ingredient : ingredientsMap.keySet()) {
+            int textViewId = findViewIdByText(ingredient);
+            if (textViewId != 0) {
+                String imageViewIdName = getResources().getResourceEntryName(textViewId) + "_checked";
+                int imageViewId = getResources().getIdentifier(imageViewIdName, "id", getPackageName());
+                ImageView ingredientImageView = findViewById(imageViewId);
+                if (ingredientImageView != null) {
+                    ingredientImageView.setImageResource(R.drawable.check_icon);
+                }
+            }
+        }
+    }
+
+    private int findViewIdByText(String text) {
+        int id = 0;
+        int[] allTextViewIDs = {R.id.ing_1_1, R.id.ing_1_2};
+        //, R.id.ing_1_3, R.id.ing_1_4 이 두개 제거되어있는 상태
+        for (int textViewId : allTextViewIDs) {
+            TextView textView = findViewById(textViewId);
+            if (textView != null && textView.getText().toString().equals(text)) {
+                id = textViewId;
+                break;
+            }
+        }
+        return id;
     }
 }

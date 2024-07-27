@@ -38,6 +38,7 @@ public class SignupActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Log.d("MyActivity", "onBackPressed is called");
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Back")

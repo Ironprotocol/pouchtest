@@ -15,14 +15,11 @@ public class Product implements Serializable {
     private String ProductId;
     private int Like;
 
-
     public Product() {}
 
-
-    public Product(String company, String productName, String replacement, String image, String id, int like, Map<String, Long> ingredients, String category, List<String> searchKeywords) {
-
-    }
-    public Product(String Company, String ProductName, String Replacement, String Image, Map<String, Long> Ingredients, String Category, List<String> searchKeywords, String ProductId, int Like) {
+    public Product(String Company, String ProductName, String Replacement, String Image,
+                   Map<String, Long> Ingredients, String Category,
+                   List<String> searchKeywords, String ProductId, int Like) {
         this.Company = Company;
         this.ProductName = ProductName;
         this.Replacement = Replacement;
@@ -55,5 +52,4 @@ public class Product implements Serializable {
     public int getLike() { return Like; }
     public void setLike(int Like) {this.Like = Like;}
     public void setImage(String image) { this.Image = image; }
-
 }
